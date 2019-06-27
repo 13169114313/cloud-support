@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: cloud-eureka
+  profiles:
+    active: @spring.active@
+  cloud:
+    config:
+      profile: @spring.active@
+
+---
+
+spring:
+  profiles: local
+  cloud:
+    config:
+      name: cloud-dureka
+      profile: @spring.active@
+      enabled: true
+      uri: http://127.0.0.1:1001

@@ -1,0 +1,43 @@
+server:
+  port: 1001
+  servlet:
+    context-path: /
+spring:
+  application:
+    name: CONFIG-SERVER
+  profiles:
+    active: native # 配置使用本地储存
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config # 搜索src/main/resource 下的properties文件夹下的文件
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+---
+
+spring:
+  profiles: local
+  cloud:
+    config:
+      server:
+        bootstrap: true
+        git:
+          uri: https://gitee.com/stylefeng-Roses/roses-config-repo.git
+          username: xxxx
+          password: xxxx
+          search-paths: /**
+  boot:
+    admin:
+      client:
+        url: http://127.0.0.1:9000
+        instance:
+          service-base-url: http://127.0.0.1:8002
