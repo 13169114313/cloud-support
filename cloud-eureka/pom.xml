@@ -29,7 +29,7 @@
 
     <!--    打包文件名-->
     <build>
-        <finalName>roses-cloud-register</finalName>
+        <finalName>cloud-eureka</finalName>
     </build>
 
 </project>
