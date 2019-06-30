@@ -10,7 +10,7 @@ eureka:
     fetch-registry: true
     registryFetchIntervalSeconds: 5
     serviceUrl:
-      defaultZone: http://127.0.0.1:1002/eureka/
+      defaultZone: http://cloud-eureka:1002/eureka/
 
 management:
   endpoints:

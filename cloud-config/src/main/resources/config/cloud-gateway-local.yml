@@ -21,14 +21,33 @@ spring:
 zuul:
   add-host-header: true #是否转发主机头
   retryable: false #重试
+  routes:
+    cloud-system: /cloud-system/**
+    api-gate:
+      path: /gateway/**
+      url: forward:/gateway #以/authAction开头的请求转发到本网关的控制器
+
+feign:
+  hystrix:
+    enabled: false
+  client:
+    config:
+      default:
+        connectTimeout: 300  #创建连接的超时时间 单位：毫秒
+        readTimeout: 3000    #处理请求的超时时间 单位：毫秒
+        errorDecoder: com.yi.cloud.core.feign.FeignErrorDecoder
+#        requestInterceptors:
+#          - cn.stylefeng.roses.gateway.core.feign.ZuulFeignHeaderProcessInterceptor
 
 #注册中心配置
 eureka:
   instance:
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
     prefer-ip-address: true
     lease-expiration-duration-in-seconds: 20   #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除(默认90秒)
     lease-renewal-interval-in-seconds: 5       #服务刷新时间配置，每隔这个时间会主动心跳一次(默认30秒)
   client:
     service-url:
-      defaultZone: http://127.0.0.1:1002/eureka
+      defaultZone: http://cloud-eureka:1002/eureka
     registry-fetch-interval-seconds: 10  #重新刷新服务地址的时间

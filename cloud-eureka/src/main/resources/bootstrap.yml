@@ -16,4 +16,4 @@ spring:
       name: cloud-dureka
       profile: @spring.active@
       enabled: true
-      uri: http://127.0.0.1:1001
+      uri: http://cloud-config:1001

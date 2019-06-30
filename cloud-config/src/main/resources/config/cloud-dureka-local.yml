@@ -12,7 +12,7 @@ eureka:
     register-with-eureka: true #自己也注册到注册中心
     fetch-registry: false #需要从其他eureka节点获取注册信息
     service-url:
-      defaultZone: http://127.0.0.1:1002/eureka #设置与eureka交互的地址
+      defaultZone: http://cloud-eureka:1002/eureka #设置与eureka交互的地址
   instance:
     hostname: 127.0.0.1
     prefer-ip-address: true
